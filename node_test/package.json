@@ -1,0 +1,18 @@
+{
+  "name": "mongo-search",
+  "version": "0.0.1",
+  "description": "Full-text Search using MongoDB Native Nodejs",
+  "main": "server.js",
+  "dependencies": {
+    "JSONStream": "^1.3.2",
+    "async": "^2.6.0",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "line-reader-sync": "^0.1.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.17",
+    "mongodb": "^2.2.35",
+    "nodejieba": "^2.2.5",
+    "nodemailer": "^4.6.7"
+  }
+}

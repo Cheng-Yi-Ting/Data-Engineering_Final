@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>News Search</title>
+  <meta name="description" content="Literary Classic Search Engine.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet" type="text/css" /> -->
+  <link href="https://cdn.muicss.com/mui-0.9.20/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,700|Open+Sans" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <div class="app-container" id="vue-instance">
+
+    <!-- 新聞類別bar -->
+    <ul class="mui-tabs__bar mui-tabs__bar--justified">
+      <li class="mui--is-active">
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-0" v-on:click="setCategory('全部新聞')">全部新聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-1" v-on:click="setCategory('焦點要聞')">焦點要聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-2" v-on:click="setCategory('政治要聞')">政治要聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-3" v-on:click="setCategory('社會新聞')">社會新聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-4" v-on:click="setCategory('生活新聞')">生活新聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-5" v-on:click="setCategory('兩岸要聞')">兩岸要聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-6" v-on:click="setCategory('國際大事')">國際大事</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-7" v-on:click="setCategory('時論廣場')">時論廣場</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-8" v-on:click="setCategory('藝文副刊')">藝文副刊</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-9" v-on:click="setCategory('財經要聞')">財經要聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-10" v-on:click="setCategory('地方新聞')">地方新聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-11" v-on:click="setCategory('運動天地')">運動天地</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-12" v-on:click="setCategory('娛樂新聞')">娛樂新聞</a>
+      </li>
+      <li>
+        <a data-mui-toggle="tab" data-mui-controls="pane-justified-13" v-on:click="setCategory('時尚消費')">時尚消費</a>
+      </li>
+
+    </ul>
+    <div class="mui-tabs__pane mui--is-active" id="pane-justified-0"></div>
+    <div class="mui-tabs__pane" id="pane-justified-1"></div>
+    <div class="mui-tabs__pane" id="pane-justified-2"></div>
+    <div class="mui-tabs__pane" id="pane-justified-3"></div>
+    <div class="mui-tabs__pane" id="pane-justified-4"></div>
+    <div class="mui-tabs__pane" id="pane-justified-5"></div>
+    <div class="mui-tabs__pane" id="pane-justified-6"></div>
+    <div class="mui-tabs__pane" id="pane-justified-8"></div>
+    <div class="mui-tabs__pane" id="pane-justified-7"></div>
+    <div class="mui-tabs__pane" id="pane-justified-8"></div>
+    <div class="mui-tabs__pane" id="pane-justified-9"></div>
+    <div class="mui-tabs__pane" id="pane-justified-10"></div>
+    <div class="mui-tabs__pane" id="pane-justified-11"></div>
+    <div class="mui-tabs__pane" id="pane-justified-12"></div>
+    <div class="mui-tabs__pane" id="pane-justified-13"></div>
+
+    <div class="mui-divider"></div>
+    <!-- 日期bar -->
+    <div>
+      <ul class="mui-tabs__bar">
+        <li class="mui--is-active">
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-1" v-on:click="setDate('今天新聞')">今天新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-2" v-on:click="setDate('昨天新聞')">昨天新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-3" v-on:click="setDate('當週新聞')">當週新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-4" v-on:click="setDate('當月新聞')">當月新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-5" v-on:click="setDate('2018')">2018新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-6" v-on:click="setDate('2017')">2017新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-7" v-on:click="setDate('2016')">2016新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-8" v-on:click="setDate('2015')">2015新聞</a>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-9" v-on:click="setDate('2014')">2014新聞</a>
+        </li>
+        </li>
+        <li>
+          <a data-mui-toggle="tab" data-mui-controls="pane-default-10" v-on:click="setDate('2013')">2013新聞</a>
+        </li>
+        </li>
+
+
+      </ul>
+      <div class="mui-tabs__pane mui--is-active" id="pane-default-1"></div>
+      <div class="mui-tabs__pane" id="pane-default-2"></div>
+      <div class="mui-tabs__pane" id="pane-default-3"></div>
+      <div class="mui-tabs__pane" id="pane-default-4"></div>
+      <div class="mui-tabs__pane" id="pane-default-5"></div>
+      <div class="mui-tabs__pane" id="pane-default-6"></div>
+      <div class="mui-tabs__pane" id="pane-default-7"></div>
+      <div class="mui-tabs__pane" id="pane-default-8"></div>
+      <div class="mui-tabs__pane" id="pane-default-9"></div>
+      <div class="mui-tabs__pane" id="pane-default-10"></div>
+
+      <form class="mui-form--inline" @submit.prevent="checkForm" action="#" method="post" novalidate="true">
+
+
+
+        <div class="mui-textfield ">
+          <span style="color:gray">Email:</span>
+
+          <input type="email" v-model="email">
+        </div>
+
+        &nbsp;
+        <label for="movie">
+          <label>
+            <select v-model="subCategory" class="mui-btn">
+              <option disabled value="">訂閱主題</option>
+              <option>全部新聞</option>
+              <option>焦點要聞</option>
+              <option>政治要聞</option>
+              <option>社會新聞</option>
+              <option>生活新聞</option>
+              <option>兩岸要聞</option>
+              <option>國際大事</option>
+              <option>時論廣場</option>
+              <option>藝文副刊</option>
+              <option>財經要聞</option>
+              <option>地方新聞</option>
+              <option>運動天地</option>
+              <option>娛樂新聞</option>
+              <option>時尚消費</option>
+
+            </select>
+
+            <!-- <br> -->
+            <button class="mui-btn">submit</button>
+
+            <p v-if="errors.length">
+              <ul>
+                <li v-for="error in errors">{{ error }}</li>
+              </ul>
+            </p>
+
+      </form>
+
+
+      </br>
+    </div>
+    <div id="vue-instance">
+      <!-- Search Bar Header -->
+      <div class="mui-panel">
+        <div class="mui-textfield ">
+          <input v-model="searchTerm" type="text" v-on:keyup.enter="onSearchInput()">
+          <label>搜尋</label>
+        </div>
+      </div>
+
+
+      <div class="mui-panel">
+        <div class="mui--text-headline">{{ numHits }} 結果</div>
+        <div class="mui--text-subhead" v-if="pageStart + countOfPage < numHits">顯示結果 {{pageStart+1}} -{{pageStart + countOfPage}}</div>
+        <div class="mui--text-subhead" v-else>顯示結果 {{pageStart+1}} -{{numHits}}</div>
+      </div>
+
+
+      <!-- Top Pagination Card -->
+      <div class="mui-panel pagination-panel">
+        <button class="mui-btn mui-btn--flat" v-on:click="setPage(currPage-1)">Prev Page</button>
+        <button class="mui-btn mui-btn--flat" v-on:click="setPage(currPage+1)">Next Page</button>
+      </div>
+
+      <!-- 舊的分頁 -->
+      <!-- <nav aria-label="Page navigation example">
+      <div>
+        <ul class="pagination">
+          <li @click.prevent="setPage(currPage-1)">
+            <a href="#">前一頁</a>
+          </li>
+          <li v-for="n in totalPage" @click.prevent="setPage(n)">
+            <a v-bind:class="{'active': (currPage === (n))}" href="#">{{n}}</a>
+          </li>
+          <li @click.prevent="setPage(currPage+1)">
+            <a href="#">下一頁</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+
+
+
+      <div class="search-results" ref="searchResults">
+        <div class="mui-panel" v-for="hit in filteredRows">
+          <div class="mui--text-subhead">date：{{ hit.date }} </div>
+          <div class="mui-divider"></div>
+          <!-- <a v-bind:href="hit.url" target="_blank" class="mui--text-title text-title">{{hit.title}}</a> -->
+          <a v-bind:href="hit.url" v-html="hit.title" target="_blank" class="mui--text-title text-title"></a>
+          <!-- <a v-bind:href="hit.url" target="_blank" class="mui--text-title text-title">
+            <span v-for="title in hit.title" v-if="title!=Null">{{title}}</span>
+          </a> -->
+          <div class="mui-divider"></div>
+          <div class="mui--text-body2" v-html="hit.content"> </div>
+          <!-- <div class="mui--text-body2" > 
+          <span >{{ item }}</span>
+        </div> -->
+        </div>
+      </div>
+
+
+      <!-- bottom Pagination Card -->
+      <div class="mui-panel pagination-panel">
+        <button class="mui-btn mui-btn--flat" v-on:click="setPage(currPage-1)">Prev Page</button>
+        <button class="mui-btn mui-btn--flat" v-on:click="setPage(currPage+1)">Next Page</button>
+      </div>
+
+    </div>
+
+
+    <!-- <script src="https://cdn.muicss.com/mui-0.9.28/js/mui.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/muicss/0.9.39/extra/mui-combined.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
